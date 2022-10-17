@@ -1,0 +1,6 @@
+node_modules
+config000.json 
+**.swo
+**.swp
+**.swn
+**.xlsx
