@@ -1,5 +1,7 @@
 node_modules
 config000.json 
+place_id.json
+place_full_info.json
 **.swo
 **.swp
 **.swn

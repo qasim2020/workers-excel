@@ -1,14 +1,113 @@
-{
-  "string": "Amanat Shield Maker H3X3+QW8, Hussaini Plaza, Chota Babu Bazar, Babu Mohalla Rd, Babu Mohalla, Saddar,Opens soon⋅ 10AM,+92 300 5314504Delivery",
-  "meta": [
-    "Amanat Shield Maker",
-    4,
-    -46,
-    "H3X3+QW8, Hussaini Plaza, Chota Babu Bazar, Babu Mohalla Rd, Babu Mohalla, Saddar,Opens soon⋅ 10AM,+92 300 5314504Delivery",
-    "https://www.google.com/maps/place/Amanat+Shield+Maker/data=!4m7!3m6!1s0x38df949b0e97a23d:0x84307e978c51ebc1!8m2!3d33.5994125!4d73.05484!16s%2Fg%2F12mkw9v3k!19sChIJPaKXDpuU3zgRwetRjJd-MIQ?authuser=0&hl=en&rclk=1",
-    923005000000,
-    "Gift shop",
-    "Shield Maker"
-  ],
-  "api_data_1": "{\"candidates\":[{\"formatted_address\":\"H3X3+QW8, Hussaini Plaza, Chota Babu Bazar, Babu Mohalla Rd, Babu Mohalla, Saddar, Saddar, Rawalpindi, Punjab 46000, Pakistan\",\"geometry\":{\"location\":{\"lat\":33.5993807,\"lng\":73.0548256},\"viewport\":{\"northeast\":{\"lat\":33.60070827989272,\"lng\":73.05616297989273},\"southwest\":{\"lat\":33.59800862010728,\"lng\":73.05346332010728}}},\"name\":\"Amanat Shield Maker\",\"opening_hours\":{\"open_now\":false},\"place_id\":\"ChIJPaKXDpuU3zgRwetRjJd-MIQ\",\"rating\":4}],\"status\":\"OK\"}"
-}
+[
+  {
+    "string": "Amanat Shield Maker H3X3+QW8, Hussaini Plaza, Chota Babu Bazar, Babu Mohalla Rd, Babu Mohalla, Saddar,Opens soon⋅ 10AM,+92 300 5314504Delivery",
+    "meta": [
+      "Amanat Shield Maker",
+      4,
+      -46,
+      "H3X3+QW8, Hussaini Plaza, Chota Babu Bazar, Babu Mohalla Rd, Babu Mohalla, Saddar,Opens soon⋅ 10AM,+92 300 5314504Delivery",
+      "https://www.google.com/maps/place/Amanat+Shield+Maker/data=!4m7!3m6!1s0x38df949b0e97a23d:0x84307e978c51ebc1!8m2!3d33.5994125!4d73.05484!16s%2Fg%2F12mkw9v3k!19sChIJPaKXDpuU3zgRwetRjJd-MIQ?authuser=0&hl=en&rclk=1",
+      923005000000,
+      "Gift shop",
+      "Shield Maker"
+    ],
+    "api1": {
+      "candidates": [
+        {
+          "formatted_address": "H3X3+QW8, Hussaini Plaza, Chota Babu Bazar, Babu Mohalla Rd, Babu Mohalla, Saddar, Saddar, Rawalpindi, Punjab 46000, Pakistan",
+          "geometry": {
+            "location": {
+              "lat": 33.5993807,
+              "lng": 73.0548256
+            },
+            "viewport": {
+              "northeast": {
+                "lat": 33.60070827989272,
+                "lng": 73.05616297989273
+              },
+              "southwest": {
+                "lat": 33.59800862010728,
+                "lng": 73.05346332010728
+              }
+            }
+          },
+          "name": "Amanat Shield Maker",
+          "opening_hours": {
+            "open_now": true
+          },
+          "place_id": "ChIJPaKXDpuU3zgRwetRjJd-MIQ",
+          "rating": 4
+        }
+      ],
+      "status": "OK"
+    }
+  },
+  {
+    "string": "Panaflex Printing Press Committee Chowk, Iqbal Rd Mohalla Chitian Hatian,Open 24 hours,+92 315 7119797Onsite services,Online appointments",
+    "meta": [
+      "Panaflex Printing Press",
+      5,
+      -57,
+      "Committee Chowk, Iqbal Rd Mohalla Chitian Hatian,Open 24 hours,+92 315 7119797Onsite services,Online appointments",
+      "https://www.google.com/maps/place/Panaflex+Printing+Press/data=!4m7!3m6!1s0x38df949515ff2f6d:0x98be308240d1eac3!8m2!3d33.6135172!4d73.0623687!16s%2Fg%2F12mkzjcpw!19sChIJbS__FZWU3zgRw-rRQIIwvpg?authuser=0&hl=en&rclk=1",
+      923157000000,
+      "Digital printing service",
+      "Panaflex Printing"
+    ],
+    "api1": {
+      "candidates": [
+        {
+          "formatted_address": "Committee Chowk, Iqbal Rd Mohalla Chitian Hatian, Rawalpindi, 46000, Pakistan",
+          "geometry": {
+            "location": {
+              "lat": 33.6135172,
+              "lng": 73.0623687
+            },
+            "viewport": {
+              "northeast": {
+                "lat": 33.61488277989272,
+                "lng": 73.06372122989272
+              },
+              "southwest": {
+                "lat": 33.61218312010728,
+                "lng": 73.06102157010727
+              }
+            }
+          },
+          "name": "Panaflex Printing Press",
+          "opening_hours": {
+            "open_now": true
+          },
+          "place_id": "ChIJbS__FZWU3zgRw-rRQIIwvpg",
+          "rating": 4.9
+        },
+        {
+          "formatted_address": "Jewellery Market, Murree Rd, Mohalla Ferozpura، Rawalpindi, Punjab 46000, Pakistan",
+          "geometry": {
+            "location": {
+              "lat": 33.6252289,
+              "lng": 73.0684423
+            },
+            "viewport": {
+              "northeast": {
+                "lat": 33.62655522989272,
+                "lng": 73.06984567989272
+              },
+              "southwest": {
+                "lat": 33.62385557010728,
+                "lng": 73.06714602010727
+              }
+            }
+          },
+          "name": "Panaflex Printing",
+          "opening_hours": {
+            "open_now": true
+          },
+          "place_id": "ChIJ5772E8OU3zgRdiJZBs6izaU",
+          "rating": 4.4
+        }
+      ],
+      "status": "OK"
+    }
+  }
+]
