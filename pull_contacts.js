@@ -2,6 +2,7 @@
 
 console.log(" — APP STARTED : Pull google details address, contacts, phone numbers etc to local computer in a text file");
 
+const Airtable = require('airtable');
 const readXlsxFile = require('read-excel-file/node');
 const fs = require('fs');
 const axios = require('axios');
@@ -188,17 +189,77 @@ let fetchPlaceInfo = function() {
 
 };
 
+let push_to_airtable = function() {
+
+    fs.readFile(`place_full_info.json`, 'utf8', (err, input) => {
+
+        if (err) {
+            return console.log(err);
+        }
+
+        let data = JSON.parse(input);
+
+        data.forEach( (val, index) => {
+
+            console.log(val.api2);
+
+        });
+
+        return;
+        return console.log(input);
+
+        let obj = rows.map( val => {
+            return {
+                fields: {
+                    URL: val[0], 
+                    Business: val[1],
+                    Rating: Math.floor( Number(val[2]) ) == 0 ? null : Math.floor( Number(val[2]) ), 
+                    Reviews: val[3], 
+                    "Google Type": val[5], 
+                    Desc: `${val[6]} ${val[7]} ${val[8]} ${val[9]} ${val[10]}`, 
+                    Number: getNumber( val ),
+                    "Custom Type": "Logistics"
+                }
+            }
+        }).filter( val => val.fields.Number && val.fields.Number.length > 0 );
+
+        console.log( JSON.stringify( obj, 0, 2 ) );
+        console.log( obj.length );
+        return console.log("here verify if data is good, push to airtable"); console.log("APP ENDED"); console.log(" ---- " );
+
+        obj.forEach( (val, index)  => {
+            base('list').create([ val ], {typecast: true}, function(err, records) {
+                  console.log(val);
+                  if (err) {
+                      console.log(`INDEX = ${index} FAILED`);
+                      console.error(err);
+                      return;
+                  }
+                  records.forEach(function (record) {
+                      console.log(`${index} Uploaded to Airtable`);
+                      console.log(record.getId());
+                  });
+            });
+        });
+    })
+
+};
+
 fs.readdir("./", (err, files) => {
     testFiles = {
         place_id: files.some( val => val == "place_id.json" ),
-        place_full_info: files.some( val => val == "place_full_info.json" )
+        place_full_info: files.some( val => val == "place_full_info.json" ),
     }
     console.log( testFiles );
 
     switch (true) {
         case (testFiles.place_full_info) :
             console.log("push the data to airtable");
-            // TODO: Sift the data according to airtable requirement - and push all of it into airtable test file - pull all of CSV from airtable - push all of it through the script back to the Airtable
+            push_to_airtable();
+            // TODO: Sift the data according to airtable requirement 
+            // - and push all of it into airtable test file 
+            // - pull all of CSV from airtable 
+            // - push all of it through the script back to the Airtable
             break;
         case (testFiles.place_id) : 
             console.log("fetch the place_full_info");
