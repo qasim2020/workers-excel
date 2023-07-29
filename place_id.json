@@ -80,31 +80,6 @@
           },
           "place_id": "ChIJbS__FZWU3zgRw-rRQIIwvpg",
           "rating": 4.9
-        },
-        {
-          "formatted_address": "Jewellery Market, Murree Rd, Mohalla Ferozpura، Rawalpindi, Punjab 46000, Pakistan",
-          "geometry": {
-            "location": {
-              "lat": 33.6252289,
-              "lng": 73.0684423
-            },
-            "viewport": {
-              "northeast": {
-                "lat": 33.62655522989272,
-                "lng": 73.06984567989272
-              },
-              "southwest": {
-                "lat": 33.62385557010728,
-                "lng": 73.06714602010727
-              }
-            }
-          },
-          "name": "Panaflex Printing",
-          "opening_hours": {
-            "open_now": true
-          },
-          "place_id": "ChIJ5772E8OU3zgRdiJZBs6izaU",
-          "rating": 4.4
         }
       ],
       "status": "OK"

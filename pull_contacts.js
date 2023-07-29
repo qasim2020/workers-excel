@@ -9,7 +9,6 @@ const axios = require('axios');
 const { similarity, editDistance } = require("./similarity.js");
 var env = process.env.NODE_ENV || 'development';
 
-
 if (env === 'development' || env === 'test') {
   var config = require('./config.json');
   var envConfig = config[env];
@@ -18,8 +17,11 @@ if (env === 'development' || env === 'test') {
   });
 }
 
+var base = new Airtable({apiKey: process.env.Airtable}).base(process.env.list);
+
 // /Users/qasim/NodeJs/workers-excel/airtable_sample.xlsx
 // airtable_sample_small.xlsx
+// airtable_sample2
 let testFiles = "";
 
 fullProcedure = function() {
@@ -199,37 +201,63 @@ let push_to_airtable = function() {
 
         let data = JSON.parse(input);
 
-        data.forEach( (val, index) => {
+        let obj = data.map( val => {
 
-            console.log(val.api2);
+            // console.log(JSON.stringify( val, 0, 2 ) );
+            console.log(val);
+
+            let photos = val.api2.result.photos.map( (val2, index) => {
+                return { 
+                    url: `https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&photo_reference=${val2.photo_reference}&key=${process.env.places}` 
+                }
+            });
+
+            return {
+                fields: {
+                      "id": val.api1.place_id, 
+                      "name": val.api1.name,
+                      "geometry": JSON.stringify(val.api1.geometry),
+                      "match" : val.api1.match.toString(),
+                      "address": val.api2.result.formatted_address,
+                      "phone": val.api2.result.formatted_phone_number,
+                      "rating": val.api1.rating.toString(), 
+                      "reviews": JSON.stringify( val.api2.result.reviews ),
+                      "googleURL": val.api2.result.url,
+                      "businessURL": val.api2.result.website,
+                      "googleType": val.meta[6],
+                      "customType": val.meta[7],
+                      "photos": photos 
+                }
+            }
+
 
         });
 
-        return;
-        return console.log(input);
+        console.log(JSON.stringify( obj, 0, 2 ) );
 
-        let obj = rows.map( val => {
-            return {
-                fields: {
-                    URL: val[0], 
-                    Business: val[1],
-                    Rating: Math.floor( Number(val[2]) ) == 0 ? null : Math.floor( Number(val[2]) ), 
-                    Reviews: val[3], 
-                    "Google Type": val[5], 
-                    Desc: `${val[6]} ${val[7]} ${val[8]} ${val[9]} ${val[10]}`, 
-                    Number: getNumber( val ),
-                    "Custom Type": "Logistics"
-                }
-            }
-        }).filter( val => val.fields.Number && val.fields.Number.length > 0 );
 
-        console.log( JSON.stringify( obj, 0, 2 ) );
-        console.log( obj.length );
-        return console.log("here verify if data is good, push to airtable"); console.log("APP ENDED"); console.log(" ---- " );
+        // return console.log("here verify if data is good, push to airtable"); console.log("APP ENDED"); console.log(" ---- " );
+        let action_done = function(input) {
+            fs.writeFile(
+                'places_pushed_to_airtable.json', 
+                input, 
+                (err) => {
+                    console.log("APP ENDED");
+                    if (err) {
+                      return console.log('!!!!! — failed to backup');
+                    }
+                    return console.log('— SUCCESS , created places_pushed_to_airtable.json');
+                });
+        };
 
+        let results = [];
         obj.forEach( (val, index)  => {
-            base('list').create([ val ], {typecast: true}, function(err, records) {
+            base('list2').create([ val ], {typecast: true}, function(err, records) {
                   console.log(val);
+
+                  let reply = err || records;
+                  results.push( reply );
+
                   if (err) {
                       console.log(`INDEX = ${index} FAILED`);
                       console.error(err);
@@ -239,9 +267,23 @@ let push_to_airtable = function() {
                       console.log(`${index} Uploaded to Airtable`);
                       console.log(record.getId());
                   });
+
+                  if( results.length == obj.length ) action_done( JSON.stringify( results, 0, 2 ) );
             });
         });
     })
+
+};
+
+let after_pushing_to_airtable = function() {
+
+
+    fs.readFile(`places_pushed_to_airtable.json`, 'utf8', (err, input) => {
+
+        console.log(err);
+        console.log(input);
+
+    });
 
 };
 
@@ -249,24 +291,30 @@ fs.readdir("./", (err, files) => {
     testFiles = {
         place_id: files.some( val => val == "place_id.json" ),
         place_full_info: files.some( val => val == "place_full_info.json" ),
+        places_pushed_to_airtable: files.some( val => val == "places_pushed_to_airtable.json" )
     }
+
     console.log( testFiles );
 
     switch (true) {
-        case (testFiles.place_full_info) :
-            console.log("push the data to airtable");
-            push_to_airtable();
-            // TODO: Sift the data according to airtable requirement 
-            // - and push all of it into airtable test file 
-            // - pull all of CSV from airtable 
-            // - push all of it through the script back to the Airtable
+        // TEST 1 = DATA PUSHED TO AIRTABLE
+        case (testFiles.places_pushed_to_airtable) :
+            console.log("TEST 1 = DATA PUSHED TO AIRTABLE");
+            after_pushing_to_airtable();
             break;
+        // TEST 2 = DATA PENDING PUSH TO AIRTABLE
+        case (testFiles.place_full_info) :
+            console.log("TEST 2 = DATA PENDING PUSH TO AIRTABLE");
+            push_to_airtable();
+            break;
+        // TEST 3 = FETCH PLACES PHONE NUMBERS (API2)
         case (testFiles.place_id) : 
-            console.log("fetch the place_full_info");
+            console.log("TEST 3 = FETCH PLACES PHONE NUMBERS (API2) ");
             fetchPlaceInfo();
             break;
+        // TEST 4 = FETCH PLACES IDs (API1)
         default: 
-            console.log("fetch google from sample - create place_id.json - create place_full_info.json - push the data to airtable");
+            console.log("TEST 4 = FETCH PLACES IDs (API1)");
             fullProcedure();
             break;
     }

@@ -1,0 +1,72 @@
+[
+ {
+  "ser": 1,
+  "name": "Natural Therapy",
+  "subtitle": "NLP Healing (Norway)",
+  "slug": "natural-therapy-no",
+  "type": "development"
+ },
+ {
+  "ser": 2,
+  "name": "Easy Heal",
+  "subtitle": "NLP Courses (UK)",
+  "slug": "easy-heal-uk",
+  "type": "branding, development"
+ },
+ {
+  "ser": 3,
+  "name": "Defence Properties",
+  "subtitle": "Real Estate Rawalpindi",
+  "slug": "defence-properties",
+  "type": "development"
+ },
+ {
+  "ser": 4,
+  "name": "7 AM Uniforms",
+  "subtitle": "School Uniforms Chakwal",
+  "slug": "7-am-uniforms",
+  "type": "branding, development"
+ },
+ {
+  "ser": 5,
+  "name": "Workers",
+  "subtitle": "Home Services Directory",
+  "slug": "workers-pk",
+  "type": "branding, development"
+ },
+ {
+  "ser": 6,
+  "name": "Waam Host",
+  "subtitle": "Web Hosting in Cloud ",
+  "slug": "waamhost-com",
+  "type": "branding"
+ },
+ {
+  "ser": 7,
+  "name": "Zakat Lists",
+  "subtitle": "Fund Raising Platform",
+  "slug": "zakat-lists-com",
+  "type": "marketing"
+ },
+ {
+  "ser": 8,
+  "name": "Tech Shek",
+  "subtitle": "Monthly Meetups",
+  "slug": "tech-shek-io",
+  "type": "marketing"
+ },
+ {
+  "ser": 9,
+  "name": "Make a Story",
+  "subtitle": "Picture Annotation",
+  "slug": "make-a-story",
+  "type": "development"
+ },
+ {
+  "ser": 10,
+  "name": "CMS",
+  "subtitle": "Content Management System",
+  "slug": "cms",
+  "type": "development"
+ }
+]
